@@ -33,6 +33,32 @@ class LinkedList:
         self.length += 1
         return True
 
+    def pop(self):
+        if self.length == 0: return None
+        pre = self.head
+        temp = self.head
+        while temp.next:
+            pre = temp
+            temp = temp.next
+        self.tail = pre
+        self.tail.next = None
+        self.length -= 1
+        if self.length == 0:
+            self.head = None
+            self.tail == None
+        return temp
+    
+    def prepend(self, value):
+        new_node = Node(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else: 
+            temp = self.head
+            self.head = new_node
+            self.head.next = temp
+        self.length += 1
+        return True 
 
 
 
@@ -48,3 +74,14 @@ print('Length:', my_linked_list.length, '\n')
 
 print('Linked List:')
 my_linked_list.print_list()
+
+my_list = LinkedList(4)
+my_list.append(3)
+my_list.append(2)
+my_list.append(1)
+print(my_list.pop().value)
+print(my_list.pop().value)
+print(my_list.pop().value)
+print(my_list.pop().value)
+print(my_list.prepend(5))
+print(my_list.pop().value)
